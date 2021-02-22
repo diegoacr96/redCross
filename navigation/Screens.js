@@ -35,11 +35,11 @@ function ElementsStack(props) {
   return (
     <Stack.Navigator mode="card" headerMode="screen">
       <Stack.Screen
-        name="Elements"
+        name="Elementos"
         component={Elements}
         options={{
           header: ({ navigation, scene }) => (
-            <Header title="Elements" navigation={navigation} scene={scene} />
+            <Header title="Elementos" navigation={navigation} scene={scene} />
           ),
           cardStyle: { backgroundColor: "#F8F9FE" }
         }}
@@ -69,11 +69,11 @@ function ArticlesStack(props) {
   return (
     <Stack.Navigator mode="card" headerMode="screen">
       <Stack.Screen
-        name="Articles"
+        name="Articulos"
         component={Articles}
         options={{
           header: ({ navigation, scene }) => (
-            <Header title="Articles" navigation={navigation} scene={scene} />
+            <Header title="Articulos" navigation={navigation} scene={scene} />
           ),
           cardStyle: { backgroundColor: "#F8F9FE" }
         }}
@@ -144,38 +144,21 @@ function HomeStack(props) {
   return (
     <Stack.Navigator mode="card" headerMode="screen">
       <Stack.Screen
-        name="Home"
+        name="Inicio"
         component={Home}
-        options={{
-          // header: ({ navigation, scene }) => (
-          //   <Header
-          //     title="Home"
-          //     search
-          //     options
-          //     navigation={navigation}
-          //     scene={scene}
-          //   />
-          // ),
-          cardStyle: { backgroundColor: "#F8F9FE" }
-        }}
-      />
-      {/* <Stack.Screen
-        name="Pro"
-        component={Pro}
         options={{
           header: ({ navigation, scene }) => (
             <Header
-              title=""
-              back
-              white
-              transparent
+              title="Inicio"
+              // search
+              // options
               navigation={navigation}
               scene={scene}
             />
           ),
-          headerTransparent: true
+          cardStyle: { backgroundColor: "#F8F9FE" }
         }}
-      /> */}
+      />
     </Stack.Navigator>
   );
 }
@@ -240,13 +223,13 @@ function AppStack(props) {
           fontWeight: "normal"
         }
       }}
-      initialRouteName="Home"
+      initialRouteName="Inicio"
     >
-      <Drawer.Screen name="Home" component={HomeStack} />
+      <Drawer.Screen name="Inicio" component={HomeStack} />
       <Drawer.Screen name="Profile" component={ProfileStack} />
       <Drawer.Screen name="Account" component={Register} />
       <Drawer.Screen name="Elements" component={ElementsStack} />
-      <Drawer.Screen name="Articles" component={ArticlesStack} />
+      <Drawer.Screen name="Articulos" component={ArticlesStack} />
     </Drawer.Navigator>
   );
 }

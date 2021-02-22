@@ -10,7 +10,7 @@ class DrawerItem extends React.Component {
     const { title, focused } = this.props;
 
     switch (title) {
-      case "Home":
+      case "Inicio":
         return (
           <Icon
             name="shop"
@@ -19,7 +19,7 @@ class DrawerItem extends React.Component {
             color={focused ? "white" : argonTheme.COLORS.PRIMARY}
           />
         );
-      case "Elements":
+      case "Elementos":
         return (
           <Icon
             name="map-big"
@@ -28,7 +28,7 @@ class DrawerItem extends React.Component {
             color={focused ? "white" : argonTheme.COLORS.ERROR}
           />
         );
-      case "Articles":
+      case "Articulos":
         return (
           <Icon
             name="spaceship"
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16
   },
   activeStyle: {
-    backgroundColor: argonTheme.COLORS.ACTIVE,
+    backgroundColor: argonTheme.COLORS.RED,
     borderRadius: 4
   },
   shadow: {

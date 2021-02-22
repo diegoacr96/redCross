@@ -7,36 +7,27 @@ import { Block, Text, theme } from 'galio-framework';
 import { argonTheme } from '../constants';
 
 
-class Card extends React.Component {
-  render() {
-    const { navigation, item, horizontal, full, style, ctaColor, imageStyle } = this.props;
-    
-    const imageStyles = [
-      full ? styles.fullImage : styles.horizontalImage,
-      imageStyle
-    ];
-    const cardContainer = [styles.card, styles.shadow, style];
-    const imgContainer = [styles.imageContainer,
-      horizontal ? styles.horizontalStyles : styles.verticalStyles,
-      styles.shadow
-    ];
+const Card = ({ navigation, item, horizontal, full, style, ctaColor, imageStyle }) => {
+  const imageStyles = [
+    full ? styles.fullImage : styles.horizontalImage,
+    imageStyle
+  ];
+  const cardContainer = [styles.card, styles.shadow, style];
+  const imgContainer = [styles.imageContainer,
+  horizontal ? styles.horizontalStyles : styles.verticalStyles,
+  styles.shadow
+  ];
 
-    return (
-      <Block row={horizontal} card flex style={cardContainer}>
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
-          <Block flex style={imgContainer}>
-            <Image source={{uri: item.image}} style={imageStyles} />
-          </Block>
-        </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
-          <Block flex space="between" style={styles.cardDescription}>
-            <Text size={14} style={styles.cardTitle}>{item.title}</Text>
-            <Text size={12} muted={!ctaColor} color={ctaColor || argonTheme.COLORS.ACTIVE} bold>{item.cta}</Text>
-          </Block>
-        </TouchableWithoutFeedback>
-      </Block>
-    );
-  }
+  return (
+    <Block row={horizontal} card flex style={cardContainer}>
+      <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
+        <Block flex space="between" style={styles.cardDescription}>
+          <Text size={14} style={styles.cardTitle}>{item.title}</Text>
+          <Text size={12} muted={!ctaColor} color={ctaColor || argonTheme.COLORS.RED} bold>{item.cta}</Text>
+        </Block>
+      </TouchableWithoutFeedback>
+    </Block>
+  );
 }
 
 Card.propTypes = {
@@ -52,7 +43,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.COLORS.WHITE,
     marginVertical: theme.SIZES.BASE,
     borderWidth: 0,
-    minHeight: 114,
+    minHeight: 75,
     marginBottom: 16
   },
   cardTitle: {
