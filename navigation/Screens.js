@@ -1,26 +1,24 @@
 import React, { useContext } from "react";
-import { Easing, Animated, Dimensions } from "react-native";
+import { Dimensions } from "react-native";
 
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
-import { Block } from "galio-framework";
 
 // screens
-import Home from "../screens/Home";
 import Onboarding from "../screens/Onboarding";
-import Pro from "../screens/Pro";
-import Profile from "../screens/Profile";
 import Register from "../screens/Register";
 import Elements from "../screens/Elements";
 import Articles from "../screens/Articles";
+import MyTasks from '../screens/mytasks';
+import Profile from "../screens/Profile";
+import Details from '../screens/details';
+import Home from "../screens/Home";
+import Pro from "../screens/Pro";
 // drawer
 import CustomDrawerContent from "./Menu";
 
 // header for screens
-import { Icon, Header } from "../components";
-import { argonTheme, tabs } from "../constants";
+import { Header } from "../components";
 import { UserContext } from "../context/user";
 
 const { width } = Dimensions.get("screen");
@@ -29,7 +27,6 @@ const Stack = createStackNavigator();
 const Public = createStackNavigator();
 const PublicDrawer = createDrawerNavigator();
 const Drawer = createDrawerNavigator();
-const Tab = createBottomTabNavigator();
 
 function ElementsStack(props) {
   return (
@@ -163,17 +160,51 @@ function HomeStack(props) {
   );
 }
 
+const MyTasksStack = ({idx}) => {
+  return (
+    <Stack.Navigator mode="card" headerMode="screen">
+      <Stack.Screen
+        name="Mis tareas"
+        component={MyTasks}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              title="Mis Tareas"
+              // search
+              // options
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#F8F9FE" }
+        }}
+      />
+
+      <Stack.Screen
+        name="Detalles"
+        component={Details}
+        idx={idx}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              title="Detalles"
+              // search
+              // options
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#F8F9FE" }
+        }}
+      />
+    </Stack.Navigator>
+  )
+}
+
 export default function OnboardingStack(props) {
   const { isLoggedIn } = useContext(UserContext)
   return isLoggedIn ? (
     <Stack.Navigator mode="card" headerMode="none">
-      {/* <Stack.Screen
-        name="Onboarding"
-        component={Onboarding}
-        option={{
-          headerTransparent: true
-        }}
-      /> */}
       <Stack.Screen name="App" component={AppStack} />
     </Stack.Navigator>
   ) : (
@@ -225,11 +256,12 @@ function AppStack(props) {
       }}
       initialRouteName="Inicio"
     >
-      <Drawer.Screen name="Inicio" component={HomeStack} />
+      <Drawer.Screen name="Articulos" component={ArticlesStack} />
+      <Drawer.Screen name="Mis Tareas" component={MyTasksStack} />
+      <Drawer.Screen name="Elements" component={ElementsStack} />
       <Drawer.Screen name="Profile" component={ProfileStack} />
       <Drawer.Screen name="Account" component={Register} />
-      <Drawer.Screen name="Elements" component={ElementsStack} />
-      <Drawer.Screen name="Articulos" component={ArticlesStack} />
+      <Drawer.Screen name="Inicio" component={HomeStack} />
     </Drawer.Navigator>
   );
 }

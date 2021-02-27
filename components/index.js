@@ -1,19 +1,21 @@
-import Button from './Button';
-import Card from './Card';
 import DrawerItem from './DrawerItem';
-import Icon from './Icon';
-import Header from './Header';
-import Input from './Input';
-import Switch from './Switch';
+import CardLarge from './CardLarge';
 import Select from './Select';
+import Button from './Button';
+import Header from './Header';
+import Switch from './Switch';
+import Input from './Input';
+import Icon from './Icon';
+import Card from './Card';
 
 export {
-  Button,
-  Card,
   DrawerItem,
+  CardLarge,
+  Header,
+  Button,
+  Switch, 
+  Select,
   Icon,
   Input,
-  Header,
-  Switch, 
-  Select
+  Card,
 };

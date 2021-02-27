@@ -5,9 +5,8 @@ import { Block, Text, theme } from "galio-framework";
 import Icon from "./Icon";
 import argonTheme from "../constants/Theme";
 
-class DrawerItem extends React.Component {
-  renderIcon = () => {
-    const { title, focused } = this.props;
+const DrawerItem = ({ title, focused, navigation }) => {
+  const renderIcon = () => {
 
     switch (title) {
       case "Inicio":
@@ -15,6 +14,15 @@ class DrawerItem extends React.Component {
           <Icon
             name="shop"
             family="ArgonExtra"
+            size={14}
+            color={focused ? "white" : argonTheme.COLORS.PRIMARY}
+          />
+        );
+      case "Mis Tareas":
+        return (
+          <Icon
+            name="check-box"
+            family="galio"
             size={14}
             color={focused ? "white" : argonTheme.COLORS.PRIMARY}
           />
@@ -55,13 +63,6 @@ class DrawerItem extends React.Component {
             color={focused ? "white" : argonTheme.COLORS.INFO}
           />
         );
-      case "Getting Started":
-        return (<Icon
-          name="spaceship"
-          family="ArgonExtra"
-          size={14}
-          color={focused ? "white" : "rgba(0,0,0,0.5)"}
-        />);
       case "Log out":
         return <Icon />;
       default:
@@ -69,42 +70,39 @@ class DrawerItem extends React.Component {
     }
   };
 
-  render() {
-    const { focused, title, navigation } = this.props;
 
-    const containerStyles = [
-      styles.defaultStyle,
-      focused ? [styles.activeStyle, styles.shadow] : null
-    ];
+  const containerStyles = [
+    styles.defaultStyle,
+    focused ? [styles.activeStyle, styles.shadow] : null
+  ];
 
-    return (
-      <TouchableOpacity
-        style={{ height: 60 }}
-        onPress={() =>
-          title == "Getting Started"
-            ? Linking.openURL(
-                "https://demos.creative-tim.com/argon-pro-react-native/docs/"
-              ).catch(err => console.error("An error occurred", err))
-            : navigation.navigate(title)
-        }
-      >
-        <Block flex row style={containerStyles}>
-          <Block middle flex={0.1} style={{ marginRight: 5 }}>
-            {this.renderIcon()}
-          </Block>
-          <Block row center flex={0.9}>
-            <Text
-              size={15}
-              bold={focused ? true : false}
-              color={focused ? "white" : "rgba(0,0,0,0.5)"}
-            >
-              {title}
-            </Text>
-          </Block>
+  return (
+    <TouchableOpacity
+      style={{ height: 60 }}
+      onPress={() =>
+        title == "Getting Started"
+          ? Linking.openURL(
+            "https://demos.creative-tim.com/argon-pro-react-native/docs/"
+          ).catch(err => console.error("An error occurred", err))
+          : navigation.navigate(title)
+      }
+    >
+      <Block flex row style={containerStyles}>
+        <Block middle flex={0.1} style={{ marginRight: 5 }}>
+          {renderIcon()}
         </Block>
-      </TouchableOpacity>
-    );
-  }
+        <Block row center flex={0.9}>
+          <Text
+            size={15}
+            bold={focused ? true : false}
+            color={focused ? "white" : "rgba(0,0,0,0.5)"}
+          >
+            {title}
+          </Text>
+        </Block>
+      </Block>
+    </TouchableOpacity>
+  );
 }
 
 const styles = StyleSheet.create({
