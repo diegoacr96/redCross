@@ -1,7 +1,7 @@
 import React from 'react';
 import { withNavigation } from '@react-navigation/compat';
 import PropTypes from 'prop-types';
-import { StyleSheet, Dimensions, Image, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
 
 import { argonTheme } from '../constants';
@@ -23,7 +23,11 @@ const Card = ({ navigation, item, horizontal, full, style, ctaColor, imageStyle 
       <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
         <Block flex space="between" style={styles.cardDescription}>
           <Text size={14} style={styles.cardTitle}>{item.title}</Text>
-          <Text size={12} muted={!ctaColor} color={ctaColor || argonTheme.COLORS.RED} bold>{item.cta}</Text>
+          <TouchableOpacity style={styles.acceptButton} onPress={() => {}}>
+            <Text style={styles.accept} >
+              Ver detalles
+                        </Text>
+          </TouchableOpacity>
         </Block>
       </TouchableWithoutFeedback>
     </Block>
@@ -84,6 +88,18 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     elevation: 2,
   },
+  acceptButton: {
+    backgroundColor: argonTheme.COLORS.RED,
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
+    width: 100,
+    height: 30,
+    borderRadius: 3
+  },
+  accept: {
+    color: argonTheme.COLORS.WHITE
+}
 });
 
 export default withNavigation(Card);

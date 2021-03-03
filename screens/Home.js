@@ -3,7 +3,6 @@ import { StyleSheet, Dimensions, ScrollView, Text } from 'react-native';
 import { Block, theme } from 'galio-framework';
 
 import { Card } from '../components';
-import articles from '../constants/articles';
 import { argonTheme } from '../constants';
 const { width } = Dimensions.get('screen');
 
@@ -11,20 +10,15 @@ const Home = () => {
 
   const tasks = [
     {
-      title: 'echeee',
+      title: 'Condución de vehiculos',
       cta: 'Ver detalles',
-      horizontal: true
     },
     {
-      title: 'Llama a la fiscalía',
+      title: 'Contar cuentos a niños en hospitales',
       cta: 'View article'
     },
     {
-      title: 'Yo te estoy diciendo algo?',
-      cta: 'View article'
-    },
-    {
-      title: 'Yo te estoy preguntando por dorian',
+      title: 'Promover hábitos saludables',
       cta: 'View article'
     }
   ];
@@ -35,7 +29,7 @@ const Home = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.articles}>
         <Block flex>
-          <Text style={styles.title} >Tareas en progreso</Text>
+          <Text style={styles.title} >Tareas Sugeridas</Text>
           {tasks.map((task, idx) => <Card key={idx} item={task} />)}
         </Block>
       </ScrollView>

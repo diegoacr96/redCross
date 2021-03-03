@@ -24,7 +24,7 @@ const CardLarge = ({ navigation, item, horizontal, full, style, ctaColor, imageS
                 <Block flex space="between" style={styles.cardDescription}>
                     <Text size={14} style={styles.cardTitle}>{item.title}</Text>
                     <TouchableOpacity style={styles.acceptButton} onPress={() => {
-                        navigation.navigate('Mis Tareas', {
+                        navigation.navigate('Mis Tareas en Progreso', {
                             screen: 'Detalles',
                             params: {
                                 idx

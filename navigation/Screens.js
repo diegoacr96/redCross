@@ -6,7 +6,6 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 
 // screens
 import Onboarding from "../screens/Onboarding";
-import Register from "../screens/Register";
 import Elements from "../screens/Elements";
 import Articles from "../screens/Articles";
 import MyTasks from '../screens/mytasks';
@@ -98,16 +97,16 @@ function ArticlesStack(props) {
 
 function ProfileStack(props) {
   return (
-    <Stack.Navigator initialRouteName="Profile" mode="card" headerMode="screen">
+    <Stack.Navigator initialRouteName="Perfil" mode="card" headerMode="screen">
       <Stack.Screen
-        name="Profile"
+        name="Perfil"
         component={Profile}
         options={{
           header: ({ navigation, scene }) => (
             <Header
               transparent
               white
-              title="Profile"
+              title="Perfil"
               navigation={navigation}
               scene={scene}
             />
@@ -147,8 +146,6 @@ function HomeStack(props) {
           header: ({ navigation, scene }) => (
             <Header
               title="Inicio"
-              // search
-              // options
               navigation={navigation}
               scene={scene}
             />
@@ -164,12 +161,12 @@ const MyTasksStack = ({idx}) => {
   return (
     <Stack.Navigator mode="card" headerMode="screen">
       <Stack.Screen
-        name="Mis tareas"
+        name="Mis tareas en Progreso"
         component={MyTasks}
         options={{
           header: ({ navigation, scene }) => (
             <Header
-              title="Mis Tareas"
+              title="Mis Tareas en Progreso"
               // search
               // options
               navigation={navigation}
@@ -218,10 +215,7 @@ const PublicViews = () => {
   return (
     <PublicDrawer.Navigator>
       <Public.Screen name="Login" component={Onboarding} />
-      <Public.Screen name="Register" component={Register} />
-
     </PublicDrawer.Navigator>
-
   )
 }
 
@@ -256,12 +250,11 @@ function AppStack(props) {
       }}
       initialRouteName="Inicio"
     >
-      <Drawer.Screen name="Articulos" component={ArticlesStack} />
-      <Drawer.Screen name="Mis Tareas" component={MyTasksStack} />
-      <Drawer.Screen name="Elements" component={ElementsStack} />
-      <Drawer.Screen name="Profile" component={ProfileStack} />
-      <Drawer.Screen name="Account" component={Register} />
       <Drawer.Screen name="Inicio" component={HomeStack} />
+      <Drawer.Screen name="Mis Tareas en Progreso" component={MyTasksStack} />
+      <Drawer.Screen name="Articulos" component={ArticlesStack} />
+      <Drawer.Screen name="Elements" component={ElementsStack} />
+      <Drawer.Screen name="Perfil" component={ProfileStack} />
     </Drawer.Navigator>
   );
 }

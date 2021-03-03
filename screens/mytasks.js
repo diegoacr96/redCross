@@ -10,17 +10,17 @@ const MyTasks = () => {
 
   const tasks = [
     {
-      title: 'Donar Sangre',
+      title: 'Condución de vehiculos',
+      cta: 'Ver detalles',
     },
     {
-      title: 'Llevar historial clínico',
+      title: 'Contar cuentos a niños en hospitales',
+      cta: 'View article'
     },
     {
-      title: 'Llenar formularios',
-    },
-    {
-      title: 'Laminar carnets',
-    },
+      title: 'Promover hábitos saludables',
+      cta: 'View article'
+    }
   ];
 
   return (

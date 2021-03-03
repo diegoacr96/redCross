@@ -49,15 +49,11 @@ const Onboarding = ({ navigation }) => {
               style={styles.button}
               color={argonTheme.COLORS.SECONDARY}
               onPress={handleLogin}
-            // onPress={() => navigation.navigate("App")}
             >
               <Text style={styles.textButton}>
                 Iniciar Sesión
               </Text>
             </Button >
-            <Block style={styles.register}>
-              <Text style={styles.registerText} onPress={() => navigation.navigate('Register')} >Registrarme</Text>
-            </Block>
           </Block>
         </Block>
       </Block>
@@ -75,7 +71,6 @@ const styles = StyleSheet.create({
     bottom: theme.SIZES.BASE,
     zIndex: 2,
     height: 700,
-    // backgroundColor: '#123123'
   },
   button: {
     backgroundColor: argonTheme.COLORS.ACTIVE,
@@ -103,17 +98,6 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     marginTop: 20
-  },
-  register: {
-    width: 325,
-    height: 50,
-    display: 'flex',
-    justifyContent: 'center'
-  },
-  registerText: {
-    color: argonTheme.COLORS.WHITE,
-    textDecorationLine: 'underline',
-    fontSize: 17.5
   }
 });
 

@@ -18,7 +18,7 @@ const DrawerItem = ({ title, focused, navigation }) => {
             color={focused ? "white" : argonTheme.COLORS.PRIMARY}
           />
         );
-      case "Mis Tareas":
+      case "Mis Tareas en Progreso":
         return (
           <Icon
             name="check-box"
@@ -42,16 +42,16 @@ const DrawerItem = ({ title, focused, navigation }) => {
             name="spaceship"
             family="ArgonExtra"
             size={14}
-            color={focused ? "white" : argonTheme.COLORS.PRIMARY}
+            color={focused ? "white" : argonTheme.COLORS.RED}
           />
         );
-      case "Profile":
+      case "Perfil":
         return (
           <Icon
             name="chart-pie-35"
             family="ArgonExtra"
             size={14}
-            color={focused ? "white" : argonTheme.COLORS.WARNING}
+            color={focused ? "white" : argonTheme.COLORS.PRIMARY}
           />
         );
       case "Account":
@@ -94,7 +94,7 @@ const DrawerItem = ({ title, focused, navigation }) => {
         <Block row center flex={0.9}>
           <Text
             size={15}
-            bold={focused ? true : false}
+            bold={focused}
             color={focused ? "white" : "rgba(0,0,0,0.5)"}
           >
             {title}
