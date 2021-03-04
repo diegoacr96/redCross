@@ -1,4 +1,4 @@
-import { DrawerItem as DrawerCustomItem } from '../components';
+import { DrawerItem as DrawerCustomItem } from "../components";
 import { Block, Text, theme } from "galio-framework";
 import { UserContext } from "../context/user";
 import { argonTheme } from "../constants";
@@ -7,21 +7,19 @@ import {
   TouchableOpacity,
   ScrollView,
   StyleSheet,
-  Linking
+  Linking,
 } from "react-native";
 
 const Goto = ({ title, route, state }) => {
   const containerStyles = [
     styles.defaultStyle,
-    state.index === 4
-      ? [styles.activeStyle, styles.shadow] : null
+    state.index === 4 ? [styles.activeStyle, styles.shadow] : null,
   ];
   return (
     <TouchableOpacity
       style={{ height: 60 }}
       onPress={route}
       style={containerStyles}
-
     >
       <Block flex row style={styles.shadow}>
         <Block row center flex={0.9}>
@@ -35,11 +33,11 @@ const Goto = ({ title, route, state }) => {
         </Block>
       </Block>
     </TouchableOpacity>
-  )
-}
+  );
+};
 
 const CustomDrawerContent = ({ navigation, state }) => {
-  const { setIsLoggedIn } = useContext(UserContext)
+  const { setIsLoggedIn } = useContext(UserContext);
   const screens = [
     "Inicio",
     "Mis Tareas en Progreso",
@@ -49,13 +47,12 @@ const CustomDrawerContent = ({ navigation, state }) => {
   ];
   const containerStyles = [
     styles.defaultStyle,
-    state.index === 4
-      ? [styles.activeStyle, styles.shadow] : null
+    state.index === 4 ? [styles.activeStyle] : null,
   ];
   return (
     <Block
       style={styles.container}
-      forceInset={{ top: 'always', horizontal: 'never' }}
+      forceInset={{ top: "always", horizontal: "never" }}
     >
       <Block flex={0.06} style={styles.header} />
       <Block flex style={{ paddingLeft: 8, paddingRight: 14 }}>
@@ -70,14 +67,22 @@ const CustomDrawerContent = ({ navigation, state }) => {
               />
             );
           })}
-          <Block flex style={{ marginTop: 24, marginVertical: 8, paddingHorizontal: 8 }}>
-            <Block style={{ borderColor: "rgba(0,0,0,0.2)", width: '100%', borderWidth: StyleSheet.hairlineWidth }} />
+          <Block
+            flex
+            style={{ marginTop: 24, marginVertical: 8, paddingHorizontal: 8 }}
+          >
+            <Block
+              style={{
+                borderColor: "rgba(0,0,0,0.2)",
+                width: "100%",
+                borderWidth: StyleSheet.hairlineWidth,
+              }}
+            />
           </Block>
           <TouchableOpacity
             style={{ height: 60 }}
             onPress={() => navigation.navigate("Perfil")}
             style={containerStyles}
-
           >
             <Block flex row style={styles.shadow}>
               <Block row center flex={0.9}>
@@ -94,14 +99,10 @@ const CustomDrawerContent = ({ navigation, state }) => {
           <TouchableOpacity
             style={{ height: 60 }}
             onPress={() => setIsLoggedIn(false)}
-
           >
             <Block flex row style={styles.shadow}>
               <Block row center flex={0.9}>
-                <Text
-                  size={15}
-                  color={"rgba(0,0,0,0.5)"}
-                >
+                <Text size={15} color={"rgba(0,0,0,0.5)"}>
                   Cerrar Sesión
                 </Text>
               </Block>
@@ -111,8 +112,7 @@ const CustomDrawerContent = ({ navigation, state }) => {
       </Block>
     </Block>
   );
-}
-
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -122,10 +122,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 28,
     paddingBottom: theme.SIZES.BASE,
     paddingTop: theme.SIZES.BASE * 3,
-    justifyContent: 'center'
+    justifyContent: "center",
   },
   MenuText: {
-    color: argonTheme.COLORS.HEADER
+    color: argonTheme.COLORS.HEADER,
   },
   shadow: {
     shadowColor: theme.COLORS.BLACK,
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 2,
     },
   },
   defaultStyle: {
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
   },
   activeStyle: {
     backgroundColor: argonTheme.COLORS.RED,
-    borderRadius: 4
+    borderRadius: 4,
   },
 });
 
