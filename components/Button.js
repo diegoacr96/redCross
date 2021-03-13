@@ -5,7 +5,7 @@ import { Button } from "galio-framework";
 
 import argonTheme from "../constants/Theme";
 
-class ArButton extends React.Component {
+/* class ArButton extends React.Component {
   render() {
     const { small, shadowless, children, color, style, ...props } = this.props;
     
@@ -29,6 +29,30 @@ class ArButton extends React.Component {
       </Button>
     );
   }
+} */
+
+const ArButton = (props) => {
+    const { small, shadowless, children, color, style, ...remaining } = props;
+    
+    const colorStyle = color && argonTheme.COLORS[color.toUpperCase()];
+
+    const buttonStyles = [
+      small && styles.smallButton,
+      color && { backgroundColor: colorStyle },
+      !shadowless && styles.shadow,
+      {...style}
+    ];
+
+    return (
+      <Button
+        style={buttonStyles}
+        shadowless
+        textStyle={{ fontSize: 12, fontWeight: '700' }}
+        {...remaining}
+      >
+        {children}
+      </Button>
+    );
 }
 
 ArButton.propTypes = {

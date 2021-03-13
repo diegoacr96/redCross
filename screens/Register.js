@@ -1,140 +1,67 @@
-import React from "react";
+import { Block, Text } from "galio-framework";
+import { argonTheme } from "../constants";
+import React, { useState } from "react";
+import { Button } from "../components";
 import {
+  ScrollView,
   StyleSheet,
-  ImageBackground,
   Dimensions,
   StatusBar,
-  KeyboardAvoidingView
 } from "react-native";
-import { Block, Checkbox, Text, theme, Icon } from "galio-framework";
-
-import { Button, Input } from "../components";
-import { Images, argonTheme } from "../constants";
+import {
+  Aditional,
+  Personal,
+  Medical,
+  Contact,
+} from "./register";
 
 const { width, height } = Dimensions.get("screen");
-
 const Register = () => {
+  const [step, setStep] = useState(1)
+
+  const Steps = [
+    <Personal />,
+    <Medical />,
+    <Contact />,
+    <Aditional />,
+  ]
+
+  const next = () => {
+    if (step < 3)
+      setStep(step + 1)
+  }
+
+  const prev = () => {
+    if (step > 0)
+      setStep(step - 1)
+  }
+
   return (
     <Block style={styles.registerContainer}>
       <StatusBar hidden />
-      <Block flex>
-        <Block flex={0.1} middle>
-          <Text style={styles.title}>Registro</Text>
-        </Block>
+      <ScrollView >
         <Block flex center>
-          <KeyboardAvoidingView
-            style={{ flex: 1 }}
-            behavior="padding"
-            enabled
-          >
-            <Block width={width * 0.8} style={{ marginBottom: 15 }}>
-              <Input
-                borderless
-                placeholder="Nombre"
-                iconContent={
-                  <Icon
-                    size={16}
-                    color={argonTheme.COLORS.ICON}
-                    name="account-circle"
-                    family="galio"
-                    style={styles.inputIcons}
-                  />
-                }
-              />
-            </Block>
-            <Block width={width * 0.8} style={{ marginBottom: 15 }}>
-              <Input
-                borderless
-                placeholder="Correo"
-                iconContent={
-                  <Icon
-                    size={16}
-                    color={argonTheme.COLORS.ICON}
-                    name="contact-mail"
-                    family="galio"
-                    style={styles.inputIcons}
-                  />
-                }
-              />
-            </Block>
-            <Block width={width * 0.8} style={{ marginBottom: 15 }}>
-              <Input
-                borderless
-                placeholder="Telefono"
-                keyboardType="number-pad"
-                iconContent={
-                  <Icon
-                    size={16}
-                    color={argonTheme.COLORS.ICON}
-                    name="contact-phone"
-                    family="galio"
-                    style={styles.inputIcons}
-                  />
-                }
-              />
-            </Block>
-            <Block width={width * 0.8} style={{ marginBottom: 15 }}>
-              <Input
-                borderless
-                placeholder="Identificación"
-                keyboardType="number-pad"
-                iconContent={
-                  <Icon
-                    size={16}
-                    color={argonTheme.COLORS.ICON}
-                    name="perm-identity"
-                    family="galio"
-                    style={styles.inputIcons}
-                  />
-                }
-              />
-            </Block>
-            <Block width={width * 0.8}>
-              <Input
-                password
-                borderless
-                placeholder="Contraseña"
-                iconContent={
-                  <Icon
-                    size={16}
-                    color={argonTheme.COLORS.ICON}
-                    name="security"
-                    family="galio"
-                    style={styles.inputIcons}
-                  />
-                }
-              />
-              <Block row style={styles.passwordCheck}>
-                <Text size={12} color={argonTheme.COLORS.MUTED}>
-                  Seguridad de la contraseña
-                        </Text>
-                <Text bold size={12} color={argonTheme.COLORS.SUCCESS}>
-                  {" "}
-                          Fuerte
-                        </Text>
-              </Block>
-            </Block>
-            <Block row width={width * 0.8}>
-              <Checkbox
-                checkboxStyle={{
-                  borderWidth: 3
-                }}
-                color={argonTheme.COLORS.RED}
-                label="Acepto los "
-              />
-              <Text style={styles.agree}>
-                Terminos y condiciones
-              </Text>
-            </Block>
-            <Block>
-              <Button style={styles.createButton}>
-                <Text bold size={14} color={argonTheme.COLORS.WHITE}>
-                  Registrarme
-                </Text>
-              </Button>
-            </Block>
-          </KeyboardAvoidingView>
+          <Block flex={0.1} middle>
+            <Text style={styles.title}>Completar registro</Text>
+          </Block>
+          <Block flex center  >
+            {Steps[step]}
+          </Block>
         </Block>
+      </ScrollView>
+      <Block center style={styles.buttonsContainer}>
+        {step > 0 &&
+          <Button style={styles.createButton} onPress={() => prev()}>
+            <Text bold size={14} color={argonTheme.COLORS.WHITE}>
+              Regresar
+            </Text>
+          </Button>
+        }
+        <Button style={styles.createButton} onPress={() => next()}>
+          <Text bold size={14} color={argonTheme.COLORS.WHITE}>
+            Continuar
+          </Text>
+        </Button>
       </Block>
     </Block>
   );
@@ -142,6 +69,7 @@ const Register = () => {
 
 const styles = StyleSheet.create({
   title: {
+    marginVertical: 20,
     fontWeight: 'bold',
     fontSize: 25
   },
@@ -155,29 +83,22 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     borderRadius: 4,
     elevation: 1,
-    shadowOffset: {
-      width: 0,
-      height: 4
-    },
+    flex: 1
   },
   inputIcons: {
     marginRight: 12
   },
-  passwordCheck: {
-    paddingLeft: 15,
-    paddingTop: 13,
-    paddingBottom: 30
-  },
   createButton: {
     backgroundColor: argonTheme.COLORS.RED,
-    width: width * 0.8,
-    marginHorizontal: 0,
-    marginVertical: 20
+    width: width * 0.35,
   },
-  agree: {
-    color: argonTheme.COLORS.RED,
-    fontSize: 14,
-    width: 150,
+  datePicker: {
+    backgroundColor: argonTheme.COLORS.RED,
+    color: argonTheme.COLORS.WHITE
+  },
+  buttonsContainer: {
+    display: 'flex',
+    flexDirection: 'row',
   }
 });
 

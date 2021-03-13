@@ -1,4 +1,6 @@
+import GenericInput from './GenericInput'
 import DrawerItem from './DrawerItem';
+import DatePicker from './DatePicker'
 import CardLarge from './CardLarge';
 import Select from './Select';
 import Button from './Button';
@@ -9,6 +11,8 @@ import Icon from './Icon';
 import Card from './Card';
 
 export {
+  GenericInput,
+  DatePicker,
   DrawerItem,
   CardLarge,
   Header,

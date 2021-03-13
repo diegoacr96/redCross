@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import ModalDropdown from 'react-native-modal-dropdown';
@@ -7,7 +7,7 @@ import { Block, Text } from 'galio-framework';
 import Icon from './Icon';
 import { argonTheme } from '../constants';
 
-class DropDown extends React.Component {
+/* class DropDown extends React.Component {
   state = {
     value: 1,
   }
@@ -47,16 +47,46 @@ class DropDown extends React.Component {
       </ModalDropdown>
     )
   }
-}
+} */
 
-DropDown.propTypes = {
-  onSelect: PropTypes.func,
-  iconName: PropTypes.string,
-  iconFamily: PropTypes.string,
-  iconSize: PropTypes.number,
-  color: PropTypes.string,
-  textStyle: PropTypes.any,
-};
+const DropDown = (props) => {
+
+  const [value, setValue] = useState(1)
+
+  const handleOnSelect = (index, value) => {
+    const { onSelect } = props;
+    setValue(value)
+    onSelect && onSelect(index, value);
+  }
+
+  const { onSelect, iconName, iconFamily, iconSize, iconColor, color, textStyle, style, ...remaining } = props;
+
+  const modalStyles = [
+    styles.qty,
+    color && { backgroundColor: color },
+    style
+  ];
+
+  const textStyles = [
+    styles.text,
+    textStyle
+  ];
+
+  return (
+    <ModalDropdown
+      style={modalStyles}
+      onSelect={handleOnSelect}
+      dropdownStyle={styles.dropdown}
+      dropdownTextStyle={{ paddingLeft: 16, fontSize: 12 }}
+      {...remaining}>
+      <Block flex row middle space="between">
+        <Text size={12} style={textStyles}>{value}</Text>
+        <Icon name={iconName || "nav-down"} family={iconFamily || "ArgonExtra"} size={iconSize || 10} color={iconColor || argonTheme.COLORS.WHITE} />
+      </Block>
+    </ModalDropdown>
+  )
+
+}
 
 const styles = StyleSheet.create({
   qty: {
@@ -64,7 +94,7 @@ const styles = StyleSheet.create({
     backgroundColor: argonTheme.COLORS.DEFAULT,
     paddingHorizontal: 16,
     paddingTop: 10,
-    paddingBottom:9.5,
+    paddingBottom: 9.5,
     borderRadius: 4,
     shadowColor: "rgba(0, 0, 0, 0.1)",
     shadowOffset: { width: 0, height: 2 },

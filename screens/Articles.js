@@ -36,9 +36,167 @@ const categories = [
   }
 ];
 
-class Articles extends React.Component {
-  renderProduct = (item, index) => {
-    const { navigation } = this.props;
+// class Articles extends React.Component {
+//   renderProduct = (item, index) => {
+//     const { navigation } = this.props;
+
+//     return (
+//       <TouchableWithoutFeedback
+//         style={{ zIndex: 3 }}
+//         key={`product-${item.title}`}
+//         onPress={() => navigation.navigate("Pro", { product: item })}
+//       >
+//         <Block center style={styles.productItem}>
+//           <Image
+//             resizeMode="cover"
+//             style={styles.productImage}
+//             source={{ uri: item.image }}
+//           />
+//           <Block center style={{ paddingHorizontal: theme.SIZES.BASE }}>
+//             <Text
+//               center
+//               size={16}
+//               color={theme.COLORS.MUTED}
+//               style={styles.productPrice}
+//             >
+//               {item.price}
+//             </Text>
+//             <Text center size={34}>
+//               {item.title}
+//             </Text>
+//             <Text
+//               center
+//               size={16}
+//               color={theme.COLORS.MUTED}
+//               style={styles.productDescription}
+//             >
+//               {item.description}
+//             </Text>
+//           </Block>
+//         </Block>
+//       </TouchableWithoutFeedback>
+//     );
+//   };
+
+//   renderCards = () => {
+//     return (
+//       <Block flex style={styles.group}>
+//         <Text bold size={16} style={styles.title}>
+//           Cards
+//         </Text>
+//         <Block flex>
+//           <Block style={{ paddingHorizontal: theme.SIZES.BASE }}>
+//             <Card item={articles[0]} horizontal />
+//             <Block flex row>
+//               <Card
+//                 item={articles[1]}
+//                 style={{ marginRight: theme.SIZES.BASE }}
+//               />
+//               <Card item={articles[2]} />
+//             </Block>
+//             <Card item={articles[4]} full />
+//             <Block flex card shadow style={styles.category}>
+//               <ImageBackground
+//                 source={{ uri: Images.Products["View article"] }}
+//                 style={[
+//                   styles.imageBlock,
+//                   { width: width - theme.SIZES.BASE * 2, height: 252 }
+//                 ]}
+//                 imageStyle={{
+//                   width: width - theme.SIZES.BASE * 2,
+//                   height: 252
+//                 }}
+//               >
+//                 <Block style={styles.categoryTitle}>
+//                   <Text size={18} bold color={theme.COLORS.WHITE}>
+//                     View article
+//                   </Text>
+//                 </Block>
+//               </ImageBackground>
+//             </Block>
+//           </Block>
+//           <Block flex style={{ marginTop: theme.SIZES.BASE / 2 }}>
+//             <ScrollView
+//               horizontal={true}
+//               pagingEnabled={true}
+//               decelerationRate={0}
+//               scrollEventThrottle={16}
+//               snapToAlignment="center"
+//               showsHorizontalScrollIndicator={false}
+//               snapToInterval={cardWidth + theme.SIZES.BASE * 0.375}
+//               contentContainerStyle={{
+//                 paddingHorizontal: theme.SIZES.BASE / 2
+//               }}
+//             >
+//               {categories &&
+//                 categories.map((item, index) =>
+//                   this.renderProduct(item, index)
+//                 )}
+//             </ScrollView>
+//           </Block>
+//         </Block>
+//       </Block>
+//     );
+//   };
+
+//   renderAlbum = () => {
+//     const { navigation } = this.props;
+
+//     return (
+//       <Block
+//         flex
+//         style={[styles.group, { paddingBottom: theme.SIZES.BASE * 5 }]}
+//       >
+//         <Text bold size={16} style={styles.title}>
+//           Album
+//         </Text>
+//         <Block style={{ marginHorizontal: theme.SIZES.BASE * 2 }}>
+//           <Block flex right>
+//             <Text
+//               size={12}
+//               color={theme.COLORS.PRIMARY}
+//               onPress={() => navigation.navigate("Home")}
+//             >
+//               View All
+//             </Text>
+//           </Block>
+//           <Block
+//             row
+//             space="between"
+//             style={{ marginTop: theme.SIZES.BASE, flexWrap: "wrap" }}
+//           >
+//             {Images.Viewed.map((img, index) => (
+//               <Block key={`viewed-${img}`} style={styles.shadow}>
+//                 <Image
+//                   resizeMode="cover"
+//                   source={{ uri: img }}
+//                   style={styles.albumThumb}
+//                 />
+//               </Block>
+//             ))}
+//           </Block>
+//         </Block>
+//       </Block>
+//     );
+//   };
+
+//   render() {
+//     return (
+//       <Block flex center>
+//         <ScrollView
+//           showsVerticalScrollIndicator={false}
+//         >
+//           {this.renderCards()}
+//           {this.renderAlbum()}
+//         </ScrollView>
+//       </Block>
+//     );
+//   }
+// }
+
+const Articles = (props) => {
+  const renderProduct = (item, index) => {
+    const { navigation } = props;
 
     return (
       <TouchableWithoutFeedback
@@ -78,7 +236,7 @@ class Articles extends React.Component {
     );
   };
 
-  renderCards = () => {
+  const renderCards = () => {
     return (
       <Block flex style={styles.group}>
         <Text bold size={16} style={styles.title}>
@@ -130,7 +288,7 @@ class Articles extends React.Component {
             >
               {categories &&
                 categories.map((item, index) =>
-                  this.renderProduct(item, index)
+                  renderProduct(item, index)
                 )}
             </ScrollView>
           </Block>
@@ -139,8 +297,8 @@ class Articles extends React.Component {
     );
   };
 
-  renderAlbum = () => {
-    const { navigation } = this.props;
+  const renderAlbum = () => {
+    const { navigation } = props;
 
     return (
       <Block
@@ -180,18 +338,17 @@ class Articles extends React.Component {
     );
   };
 
-  render() {
-    return (
-      <Block flex center>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-        >
-          {this.renderCards()}
-          {this.renderAlbum()}
-        </ScrollView>
-      </Block>
-    );
-  }
+  return (
+    <Block flex center>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+      >
+        {renderCards()}
+        {renderAlbum()}
+      </ScrollView>
+    </Block>
+  );
+
 }
 
 const styles = StyleSheet.create({

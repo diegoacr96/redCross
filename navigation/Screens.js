@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Dimensions } from "react-native";
+import { Dimensions, Text, View } from "react-native";
 
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -13,6 +13,7 @@ import Profile from "../screens/Profile";
 import Details from '../screens/details';
 import Home from "../screens/Home";
 import Pro from "../screens/Pro";
+import Register from '../screens/Register'
 // drawer
 import CustomDrawerContent from "./Menu";
 
@@ -157,7 +158,7 @@ function HomeStack(props) {
   );
 }
 
-const MyTasksStack = ({idx}) => {
+const MyTasksStack = ({ idx }) => {
   return (
     <Stack.Navigator mode="card" headerMode="screen">
       <Stack.Screen
@@ -205,15 +206,17 @@ export default function OnboardingStack(props) {
       <Stack.Screen name="App" component={AppStack} />
     </Stack.Navigator>
   ) : (
-      <Public.Navigator mode="card" headerMode="none">
-        <Public.Screen name="Login" component={PublicViews} />
-      </Public.Navigator>
-    );
+    <Public.Navigator mode="card" headerMode="none">
+      <Public.Screen name="Login" component={PublicViews} />
+    </Public.Navigator>
+  );
 }
 
 const PublicViews = () => {
   return (
-    <PublicDrawer.Navigator>
+    <PublicDrawer.Navigator
+      initialRouteName="Register">
+      <Public.Screen name="Register" component={Register} />
       <Public.Screen name="Login" component={Onboarding} />
     </PublicDrawer.Navigator>
   )
